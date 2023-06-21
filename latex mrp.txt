@@ -1,0 +1,245 @@
+\documentclass[12pt]{report}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{float}
+\begin{document}
+\thispagestyle{empty} %
+\begin{center}
+
+\vspace{4cm}
+\doublespacing
+\textbf{\Large A Deep Learning Approach to Forecast the Canadian Consumer Price Index(CPI) Using Encoder-Decoder Attention Mechanisms and Hybrid Convolutional-LSTM Networks }\\
+\vspace{3cm}
+\textbf{A Major Research Paper}\\
+\textbf{presented to the Toronto Metropolitan University}\\
+\vspace{1cm}
+\textbf{in partial fulfillment of the requirements for the degree of }\\
+\textbf{Master of Science in Data Science and Analytics}\\
+\textbf{Department of Engineering}\\
+\vspace{4cm}
+\textbf{MRP Supervisor:}\\
+Dr. Aliaa Alnaggar\\
+\textbf{Second Reader:}\\
+Dr. Ceni Babaoglu\\
+\textbf{Candidate:}\\
+ Maame Cobbinah,\\
+\vspace{0.1cm}
+BSc Economics and Statistics, University of Victoria, 2017\\
+\vspace{0.5cm}
+{2022/2023}\\
+\end{center}
+\newpage
+\begin{center}
+\textbf{Author's Declaration for Electronic Submission of a Major Research Project (MRP)}
+\end{center}
+\doublespacing
+I hereby declare that I am the sole author of this Major Research Paper. This is a true copy of the MRP, including any required final revisions.
+I authorize Toronto Metropolitan University to lend this MRP to other institutions or individuals for the purpose of scholarly research.
+I further authorize Toronto Metropolitan University to reproduce this MRP by photocopying or by other means, in total or in part, at the request of other institutions or individuals for the purpose of scholarly research.
+I understand that my MRP may be made electronically available to the public.\\
+Maame Cobbinah
+\newpage % Add a new page before the abstract
+\begin{center}
+\centering
+\textbf{Abstract}\
+\end{center}
+\doublespacing
+The Canadian Consumer Price Index (CPI) is an important macro-economic indicator that measures the average price change of goods and services purchased by households over time. It is one of the inflation indicators and is commonly used by the Canadian government for fiscal and monetary policies, such as adjusting consumer income payments for pensions and old age security, as well as providing cost-of-living wage adjustments for millions of Canadian workers. While traditional statistical methods have been useful in CPI forecasting, advancements in deep learning techniques and the availability of big data allow for more sophisticated and accurate forecasting methods. This MRP proposes a novel deep learning approach that utilizes encoder-decoder attention mechanisms and Hybrid Convolutional LSTM to forecast the Canadian CPI. These methods have shown promising results in various time series forecasting applications and have the potential to enhance the accuracy and efficiency of CPI forecasting.
+
+\vspace{1.5cm}
+\textbf{Keywords:} \textit{CPI, household, goods and services, economic indicator, Fiscal Policy, Monetary Policy, Forecasting, Encoder-Decoder Architecture, Attention, LSTM, Deep-learning}
+
+
+\newpage % Add a new page before the abstract
+\begin{center}
+\centering
+\setcounter{section}{0}
+\section{Introduction}\
+\end{center}
+\doublespacing
+The development of CPI (Consumer Price Index) forecasting in macroeconomics has become crucial due to its significance in informing monetary policy decisions and guiding economic planning. Accurate CPI forecasting helps policymakers and economists anticipate inflationary pressures, understand the dynamics of price changes, and assess the overall health of an economy. By providing insights into inflation trends, CPI forecasting enables policymakers to take proactive measures, such as adjusting interest rates and implementing appropriate fiscal policies, to maintain price stability and support sustainable economic growth. Concurrently, the growth in deep learning techniques has improved ability to forecast into the future. The integration of encoder-decoder attention mechanisms and Hybrid Convolutional LSTM has shown promise in improving the accuracy and effectiveness of CPI forecasting models. The aim of this research paper is to explore the efficacy of such a deep learning approach in predicting the Canadian Consumer Price Index, contributing to the existing literature on forecasting methods and providing valuable insights for policymakers and economists.
+\vspace{0.2cm}\\
+\subsection{Background}
+The Consumer Price Index (CPI) has been used as a tool to restructure the Canada Pensions Plan, Old age security, employment insurance amongst others.  It has also informed policies around budgets used for infrastructural development and other social-economic programs. 
+The CPI itself is an economic indicator that measures the average cost variation in a diverse range of goods and services purchased by households, businesses, and other entities. It focuses specifically on items considered as consumer goods or services and is typically associated with retail prices. 
+The CPI excludes expenditures, such as income taxes, charitable donations, pension contributions, and consumer savings and investments. 
+On a monthly basis Statistics Canada gathers prices across a spectrum of good and services. The CPI is then determined by assigning weights to each item comparing the total expenditure on a specific item to the overall spending in Canada. These weights play a crucial role in assessing the impact of price changes on the overall consumer budget. Changes in spending patterns reflect various factors, including shifts in population composition and distribution, changes in the availability and quality of goods and services, fluctuations in personal incomes and wealth, as well as evolving consumer preferences.
+\vspace{0.2cm}\\
+The CPI is anchored to a time base, or base period, which represents the period when the index is assigned a value of 100. Currently, the CPI time base in Canada is set at 2002. When referencing specific index levels, it is customary to include the base period to provide context. For example, the CPI All-items for Canada in January 2020 was reported as 136.8 (2002=100), indicating that consumer prices were  \SI{36.8}{\percent} higher in January 2020 compared to the base period of 2002. To ensure an accurate representation of short-term inflation trends, the CPI incorporates adjustments for anticipated seasonal price fluctuations when comparing month-to-month changes in the index.
+\vspace{0.2cm}\\
+The CPI is a good inflation indicator as it calculated based on the representative basket of goods. That is it tracks changes in the prices of a diverse basket of goods and services that are typically purchased by households. This basket is designed to reflect the consumption patterns of the average consumer, making it a representative sample of consumer spending. Secondly the frequency of data collection and measurement for CPI helps to provide timely updates on inflation trends. This frequency allows policymakers and economists to monitor changes in consumer prices and make informed decisions accordingly.
+\vspace{0.3cm}\\
+Despite its usefulness, the CPI has some challenges in terms of measurement. For example, quality adjustments is very hard to measure. Although, the CPI aims to measure price changes while holding the quality of goods and services constant, the improvements in the quality of products over time, such as advancements in technology or changes in product features, are not always adequately accounted for in the index. This can result in an underestimation of the true cost of living. Secondly it is hard to take geographical variation into account when looking at the aggregated index value. The CPI represents an average measure of inflation for the entire country. It may not capture regional variations in prices, where different areas experience different rates of inflation. For example the cost of transporting food to Northern Canada turns to be higher and hence food prices are relatively higher in these areas compared to the rest of Canada. The aggregated gross value may hide all the devils in the details .
+\vspace{1.5cm}\\
+\subsection{Research Question}
+The main objective of this research is to assess whether deep learning techniques, specifically encoder-decoder attention mechanisms and Hybrid Convolutional LSTM, can outperform traditional time series models like ARIMA and Holt-Winters, as well as other machine learning models such as XGBoost, when applied to micro-economic data for forecasting purposes.
+
+\vspace{1.5cm}
+\subsection{Independent/Dependent Variables}
+The list of all the available fields in the dataset is given in Appendix C. 
+\newpage 
+\section{Literature Review}
+
+The first paper reviewed for this MRP was "Attention is All You Need" by Vaswani et al. (2017). The authors introduce the Transformer model, which is designed for sequence transduction tasks. The key idea is to replace recurrent and convolutional operations with attention mechanisms to effectively capture long-range dependencies in sequences.
+The authors build upon previous research in the field, referencing two papers. The first reference is "Convolutional Sequence to Sequence Learning" by Gehring et al. (2017), which explores the use of convolutional neural networks for sequence transduction. The second reference is "Effective Approaches to Attention-based Neural Machine Translation" by Luong et al. (2015), which investigates attention mechanisms for improving neural machine translation.
+To evaluate the Transformer model, the authors conduct experiments on language translation datasets. For the English-German translation task, they utilize the WMT 2014 dataset consisting of approximately 4.5 million sentence pairs. They employ byte-pair encoding to encode sentences, resulting in a shared source-target vocabulary of around 37,000 tokens. Similarly, for the English French translation task, they use the larger WMT 2014 dataset with 36 million sentences and a 32,000 word-piece vocabulary. The training data is batched based on approximate sequence length, with each batch containing approximately 25,000 source tokens and 25,000 target tokens. The training is performed on 8 NVIDIA P100 GPUs.
+The Transformer model introduced in the paper utilizes self-attention mechanisms to compute the representation of each position in a sequence. It consists of an encoder-decoder architecture composed of multiple layers of self-attention and feed-forward neural networks. Positional encoding is employed to incorporate sequence order information. The model is trained using "multi-head attention," a variant of attention mechanism, and optimized with the Adam optimizer. The authors also apply regularization techniques such as residual dropout and label smoothing.
+The results obtained demonstrate the effectiveness of the Transformer model. For the English-German translation task, the big Transformer model outperforms previously reported models by more than 2.0 BLEU, achieving a state-of-the-art BLEU score of 28.4. Even the base model surpasses previously published models while requiring less training cost. Similarly, for the English French translation task, the big model achieves a BLEU score of 41.0, surpassing previous single models at a fraction of the training cost of the previous state-of-the-art model.
+While the paper primarily focuses on language translation, the attention mechanism of the Transformer model can also be applied to forecasting tasks. Specifically, in the case of CPI forecasting, the input data can be structured as a sequence of historical CPI values for each product category. By training the Transformer model on this data, it can effectively capture the dependencies and patterns within and across different product categories over time using the self-attention mechanisms.
+The attention mechanisms enable the model to focus on relevant past observations while making predictions for future CPI values. Additionally, the Transformer model's ability to model long-range dependencies without recurrent or convolutional operations makes it well-suited for capturing complex patterns and relationships in CPI time series data.\\
+
+The second article reviewed was "Stock Price Prediction Using Attention-based Multi-Input LSTM" by Li, Shen, and Zhu. The authors introduce a novel attention-based multi-input LSTM model for stock price prediction. 
+The authors use stock data from the China stock market, specifically major stocks under the CSI-300 index. They created a dataset consisting of 261 stocks' opening prices from April 25, 2013, to May 15, 2017, after excluding 40 stocks with less than 4 years of historical record.
+For their experiments, the authors generated a total of 249,516 samples with a fixed time window size of 10 and a stride of 1. The training set comprises 171,216 samples, the validation set contains 52,200 samples, and the testing set includes 26,100 samples.
+The authors employ the RMSProp optimizer with a learning rate of 0.001 for training the model. They set the minibatch size to 512 and shuffle the samples at the end of each iteration. The training process involves minimizing the mean square error over all training samples.
+In the proposed multi-input LSTM model, attention is applied using a dual-stage attention mechanism. The model incorporates a mainstream factor as the primary input and three auxiliary factors: "Positive," "Negative," and "Index." These factors are concatenated into a single input through dimensional expansion. Attention weights within the model are calculated using an attention equation. During training, the attention weights gradually assign higher weights to the mainstream factor while reducing the weights of the auxiliary factors.
+The MI-LSTM, which combines LSTM and attention mechanisms, demonstrates superior performance in extracting potential information and filtering noise. The model assigns different weights to input series, prioritizing the mainstream factor while capturing information from leaky input gates. The output of the MI-LSTM is further processed using temporal self-attention, allowing the model to focus on the most important factors and adaptively capture the most relevant time steps. Compared to the LSTM model, the MI-LSTM achieved a significant 9.96\% improvement in mean square error.
+
+
+\newpage 
+\section{Exploratory Data Analysis}
+
+The dataset used for this research provides monthly Consumer Price Index (CPI) values for different categories of goods and services. The dataset contains not seasonally adjusted CPI values for all-items, as well as categories such as food, shelter, clothing, transportation, and healthcare. The CPI indices are not seasonally adjusted as exploratory data analysis revealed that there was not much seasonality with the data .
+
+\subsection{Data Acquisition}
+
+The data for this project was acquired from Statistics Canada (\url{www150.statcan.gc.ca}). The datasets are open-sourced and compliant with the MRP requirements.
+
+\subsection{Data Source \& Data Files}
+
+The dataset was downloaded as csv files from the Statistics Canada website. The CPI values are reported as indices with the base year set to 2002=100. A subset of the data spanning from January 2003 to the present was extracted for the forecasting process. To facilitate the forecasting process, the data will be divided into training and test sets. The data files are posted on GitHub, and the link to the GitHub repository and a sample file are included in Appendix B.
+
+\subsection{Data Structure Analysis}
+
+The dataset includes fields such as the reference date period (grouped by month), CPI values for different categories of goods and services, and CPI values attributed to energy, goods, and services. Table 1 represents the data fields and their descriptions.
+% ...
+
+
+\begin{table}
+  \centering
+  \onehalfspacing
+  \caption{Data Fields and Descriptions}
+  \label{table:data-fields}
+  \begin{tabular}{|l|p{0.6\linewidth}|}
+    \hline
+    \textbf{Field} & \textbf{Description} \\
+    \hline
+    Date & The reference date period for which the data is reported. The data is typically grouped by month. \\
+    \hline
+    All-Items & The values attributed to the basket of goods used to calculate the overall index. It includes all items, such as food, shelter, clothing, transportation, health care, recreation, and more. \\
+    \hline
+    Food & The values attributed to the basket of goods that encompass food items. This category includes food consumed at home and food purchased away from home. \\
+    \hline
+    Shelter & The values associated with housing and accommodation costs, such as rent, mortgage payments, and maintenance expenses. \\
+    \hline
+    Household operations, furnishings, \\ and equipment & The values attributed to household spending on daily operations, equipment, and furnishings. This category includes expenses like cleaning supplies, appliances, furniture, and other household items. \\
+    \hline
+    Clothing and footwear & The values attributed to the cost of clothing and footwear. This category includes clothing items, shoes, and related accessories. \\
+    \hline
+    Transportation & The values attributed to the cost of transportation, including vehicle purchases, fuel, vehicle maintenance, public transportation fares, and other transportation-related expenses. \\
+    \hline
+    Gasoline & The values associated with the price of gasoline. It reflects the changes in the cost of fuel used for transportation. \\
+    \hline
+    Health and personal care & The values attributed to health care and personal care expenses. This category includes medical services, prescription drugs, personal care products, and other related costs. \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \centering
+  \onehalfspacing
+  \label{table:data-fields}
+  \begin{tabular}{|l|p{0.6\linewidth}|}
+    \hline
+    \textbf{Field} & \textbf{Description} \\
+    \hline
+    Recreation, education, and reading & The values attributed to education, recreation, and reading expenses. This category includes costs related to recreational activities, tuition fees, school supplies, books, and other educational materials. \\
+    \hline
+    Alcoholic beverages, tobacco products,\\ and cannabis & The values attributed to the cost of alcoholic beverages, tobacco products, and recreational cannabis. This category includes prices of alcoholic beverages, cigarettes, cigars, and other tobacco-related products. \\
+    \hline
+    All-Items excluding food and energy & The value attributed to all items except for the prices of food and energy. It provides an indication of overall trends excluding the impact of food and energy costs. \\
+    \hline
+    All-Items excluding energy & The value attributed to all items except for the cost of energy.It gives insight into the overall index while excluding the influence of energy prices.\\
+    \hline
+    Energy & The value attributed to the cost of energy, including electricity, natural gas, and other energy-related expenses. \\
+    \hline
+    Goods & The values attributed to the cost of goods, which includes both durable and non-durable goods. Durable goods are items with a longer lifespan, such as appliances and furniture, while non-durable goods are consumed quickly, such as food and clothing. \\
+    \hline
+    Services & The values attributed to the cost of services, including housing services, transportation services, medical services, and other services consumed by households. \\
+    \hline
+  \end{tabular}
+\end{table}
+% ...
+\newpage % Add a new page before EDA
+\subsection{Data Analysis and Statistics}
+Our dataset consists of 244 rows and includes 1 dependent variable (All items category) and 15 independent variables. Summary statistics for each category are presented in Figure \ref{fig:summary-statistics}, providing insights into the distribution, central tendency, and variability of the data.
+\vspace{0.5cm}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{summary_statistics .png}
+  \caption{Summary Statistics.}
+  \label{fig:summary-statistics}
+\end{figure}
+\newpage 
+In Figure 2, we use a time series plot to illustrate the trends of the various categories. Overall, CPI values have shown a consistent increase month over month, with the exception of clothing and footwear. Notably, categories such as gasoline, energy, and alcohol and cannabis exhibit high volatility, featuring significant peaks and exponential growth since 2003.
+\vspace{0.5cm}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.1\textwidth]{CPI line_plot.png}
+  \caption{Canadian Consumer Price Index 2003 to 2023}
+  \label{fig:CPI-lineplot}
+\end{figure}
+\newpage
+Figure 3 provides an overview of the average Consumer Price Index (CPI) per product category. The data reveals that, on average, CPI values have increased by 23\% across all items. Notably, certain categories show even higher average increases. Gasoline, energy, alcohol, food, and shelter have experienced average increases of 60\%, 50\%, 44\%, 31\%, and 30\%, respectively.
+These findings indicate that households, on average, allocate a significant portion of their spending—30\% or more—towards these specific products. Gasoline, energy, alcohol, food, and shelter play a substantial role in the average household budget, reflecting the impact of rising prices within these categories.
+\vspace{0.5cm}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.1\textwidth]{Category_breakdown.png}
+  \caption{Average CPI by product category}
+  \label{fig:category-breakdown barplot}
+\end{figure}
+\newpage
+The distribution of the data is illustrated in Figure 4 through box plots. It is evident that most product categories have a lower quartile value greater than 100, except for clothing. This suggests that, compared to 2003, the Consumer Price Index (CPI) has increased for all categories except clothing.
+The upper quartiles vary across different product categories. Notably, categories such as transportation, gasoline, and energy exhibit extreme outliers. These outliers represent data points that deviate significantly from the overall pattern or distribution of the dataset. They are observations that lie far away from the majority of the data points and can have a disproportionate impact on statistical measures and forecasting results.
+During the modeling process, it may be necessary to remove these outliers from our training set to prevent them from causing forecasting errors. By eliminating these extreme values, we can ensure more accurate and reliable predictions.
+\vspace{0.5cm}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{box_plot.png}
+  \caption{CPI Distribution per Product Category}
+  \label{fig:distribution boxplot}
+\end{figure}
+\newpage
+In Figure 5, we analyze the overall Consumer Price Index (All-Item Category) data using a heatmap. The heatmap reveals that there are no discernible patterns or variations in CPI values by month, indicating the absence of monthly seasonality. However, when observing the heatmap over a longer time frame, we observe a deepening of color, particularly in the last two years. This deepening color indicates a consistent growth in CPI compared to the base period of 2002.
+These findings suggest that while there are no specific months with notably high CPI values indictive of seasonality, the overall trend of CPI has exhibited a steady increase since 2003, with a more pronounced growth in recent years.
+\vspace{0.5cm}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.1\textwidth]{heatmap.png}
+  \caption{Heat Map of All Item Category}
+  \label{fig:pattern-heatplot}
+\end{figure}
+\newpage
+The ETS seasonal decomposition in Figure 6 further supports the observation that the data does not exhibit strong seasonality. The decomposition analysis reveals that the seasonal component is relatively weak or negligible.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.1\textwidth]{ets decomposition.png}
+  \caption{ETS Seasonal Decomposition }
+  \label{fig:ets-decomposition}
+\end{figure}
+\newpage
+Additionally, the Autocorrelation plot in Figure 7 demonstrates that the values in the "All-items" category are non-stationary. The plot illustrates a slow decay or gradual decline in autocorrelation values as the lag increases. This pattern is indicative of non-stationarity in the data
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.0\textwidth]{autocorrelation.png}
+  \caption{Autocorrelation Overall CPI  }
+  \label{fig:autocorrelation}
+\end{figure}
+These findings suggest that the dataset lacks strong seasonality and exhibits non-stationary behavior, as indicated by both the ETS seasonal  decomposition and the Autocorrelation plot.
+\end{document}
+
+
