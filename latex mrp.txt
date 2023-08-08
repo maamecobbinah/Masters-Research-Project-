@@ -57,6 +57,7 @@ I authorize Toronto Metropolitan University to lend this MRP to other institutio
 I further authorize Toronto Metropolitan University to reproduce this MRP by photocopying or by other means, in total or in part, at the request of other institutions or individuals for the purpose of scholarly research.
 I understand that my MRP may be made electronically available to the public.\\
 Maame Cobbinah
+
 \newpage % Add a new page before the abstract
 \begin{center}
 \centering
@@ -78,7 +79,7 @@ I am thankful for her continuous encouragement and feedback, which greatly contr
 Thank you,\\
 Professor Aliaa Alnaggar
 \newpage
-\renewcommand{\contentsname}{TABLE OF CONTENTS} % Change the table of contents title
+\renewcommand{\contentsname}{TABLE OF CONTENTS} 
 \tableofcontents
 \newpage
 \begin{center}
@@ -125,14 +126,14 @@ Wang et. al (2012)~\cite{wang2012new} proposed the Support Vector regressor as a
 \subsection{Hybrid Models}
 Hybrid models have also become increasingly popular. Liu et al. (2023)~\cite{liu2023multi} proposed a hybrid model for CPI forecasting that combines Complete Ensemble Empirical Mode Decomposition with Adaptive Noise (CEEMDAN),  Empirical Mode Decomposition (EMD), Hierarchical Agglomerative (HAC), and the Independent Component Analysis (ICA). The model decomposes CPI data into adaptive modes using CEEMDAN and clusters them with HAC to reduce dimensions. ICA is then employed to extract hidden information, and NAR is used for forecasting each independent component. The hybrid model outperforms benchmark models such as the ARIMA and NAR models, showing lower MAE and RMSE values and higher R\textsuperscript{2} scores.\\
 \subsection{Deep Learning Techniques}
-Recently, deep learning techniques have emerged as better alternatives for forecasting. This due to their ability to handle complexity in time series data, perform transfer learning, and scalability. Bhardwaj (2022)~\cite{bhardwaj2022forecasting} proposed an Artificial Neural Network (ANN) method for forecasting GDP per capita, achieving an impressive R\textsuperscript{2} score of 0.9980 and a mean absolute error of 1.18\%. Nakamura (2005)~\cite{nakamura2005} compared a Neural Network (NN) model to autoregression (AR) models for CPI inflation forecasting, with the NN model outperforming in short-term forecasts. However, for longer forecast horizons, the NN model's performance becomes similar to the AR model. Barkan et al. (2022)~\cite{barkan2022forecasting} utilized a hierarchical recurrent neural network (HRNN) model to improve the prediction of disaggregated CPI inflation components, outperforming baseline models with an RMSE of 0.78 and correlation coefficients of 0.24 and 0.29. Theoharidi et al. (2023)~\cite{theoharidis2023deep} proposed a hybrid deep learning model, VAE-ConvLSTM, for inflation forecasting. It combined Variational Autoencoders (VAEs) and Convolutional LSTM Networks (ConvLSTM) to capture nonlinear patterns in inflation time series data. The model outperformed benchmark models, demonstrating superior consistency. These studies highlight the superior performance of deep learning models in economic forecasting.
+Recently, deep learning techniques have emerged as better alternatives for forecasting. This due to their ability to handle complexity in time series data, perform transfer learning, and scalability. Bhardwaj (2022)~\cite{bhardwaj2022forecasting} proposed an Artificial Neural Network (ANN) method for forecasting GDP per capita, achieving an impressive R\textsuperscript{2} score of 0.9980 and a mean absolute error of 1.18\%. Nakamura (2005)~\cite{nakamura2005} compared a Neural Network (NN) model to autoregression (AR) models for CPI inflation forecasting, with the NN model outperforming in short-term forecasts. However, for longer forecast horizons, the NN model's performance becomes similar to the AR model. Barkan et al. (2022)~\cite{barkan2022forecasting} utilized a hierarchical recurrent neural network (HRNN) model to improve the prediction of disaggregated CPI inflation components, outperforming baseline models with an RMSE of 0.78 and correlation coefficients of 0.24 and 0.29. Theoharidi et al. (2023)~\cite{theoharidis2023deep} proposed a hybrid deep learning model, VAE-ConvLSTM, for inflation forecasting. It combined Variational Autoencoders (VAEs) and Convolutional LSTM Networks (ConvLSTM) to capture nonlinear patterns in inflation time series data. The model outperformed benchmark models, demonstrating superior consistency. 
 \subsection{Transformer and Attention Models}
-This MRP however focuses on attention models. The attention methodology was introduced by Vaswani et al (2017)~\cite{vaswani2017attention} in their paper "Attention is All You Need" . The model showcases the effectiveness of an attention Transformer model in language translation tasks. It achieved state-of-the-art results with improved efficiency, modeling long-range dependencies without recurrent or convolutional operations. The authors propose its applicability to forecasting tasks.\\
+This MRP however focuses on attention models. The attention methodology was introduced by Vaswani et al (2017)~\cite{vaswani2017attention} in their paper "Attention is All You Need" . The model showcases the effectiveness of an attention Transformer model in language translation tasks. It achieved state-of-the-art results with improved efficiency, modeling long-range dependencies without recurrent or convolutional operations.\\
 Abbasimehr \& Paki (2022)~\cite{abbasimehr2022improving} builds on this concept by applying attention to  several time series datasets. Their study applied a hybrid LSTM and multi-head attention model to 16 public datasets. The model utilized  a single-step ahead forecasting strategy with a selected lag size and optimized hyperparameters.The hybrid LSTM and multi-head attention model outperformed benchmarks, ranking first among the methods used.\\
 
-Similarly, Chen (2022)~\cite{chen2022} incorporated attention mechanisms based on time and sequence characteristics to capture important influencing factors for financial markets. Their proposed Deep Neural Network model (MALSTM) outperformed classical time series models (ARIMA) and LSTM models, improving MAE from 8.96\% to 4.26\%. Integration of attention mechanisms and utilization of multiple time series inputs enhanced model effectiveness and robustness.
+Similarly, Chen (2022)~\cite{chen2022} incorporated attention mechanisms based on time and sequence characteristics to capture important influencing factors for financial markets. Their proposed Deep Neural Network model (MALSTM) outperformed classical time series models (ARIMA) and LSTM models, improving MAE from 8.96\% to 4.26\%. 
 Li et al. (2018)~\cite{li2018stock} also introduced an attention-based multi-input LSTM model for stock price prediction. Their study focused on China's CSI-300 index and incorporated a dual-stage attention mechanism using a mainstream factor and three auxiliary factors. The MI-LSTM model achieved a significant 9.96\% improvement in mean square error compared to the LSTM model, demonstrating its effectiveness in stock price prediction.
-Finally, Du et al. (2020)~\cite{du2020multivariate} proposed an effective approach for forecasting multi-step time series values using an attention-based encoder-decoder framework. The framework incorporates a bidirectional Long Short-Term Memory (Bi-LSTM) as the encoder, an LSTM as the decoder, and a temporal attention context layer. By leveraging the Bi-LSTM, the model captures deep temporal dependency features in multivariate time series. The authors evaluate their model on five public datasets and demonstrate its superiority over benchmark models, achieving better results in terms of RMSE and MAE.\\
+Finally, Du et al. (2020)~\cite{du2020multivariate} proposed an effective approach for forecasting multi-step time series values using an attention-based encoder-decoder framework. The framework incorporates a bidirectional Long Short-Term Memory (Bi-LSTM) as the encoder, an LSTM as the decoder, and a temporal attention context layer. The authors evaluated their model on five public datasets and demonstrate its superiority over benchmark models, achieving better results in terms of RMSE and MAE.\\
 
 The model used in this MRP shares a similar framework with the one proposed by Wang et al. (2022)~\cite{wang2022attention}. Their model employs an attention-based RNN encoder-decoder model for multi-step forecasting of sensory time series. The model captures interrelationships among heterogeneous parameters, employing spatial and parameter-wise attention layers in the encoders and temporal attention in the decoders for multi-step forecasting. However, there are notable differences in the approach adopted in this MRP versus Wang et al. (2022)~\cite{wang2022attention} . First, the model in this paper focuses on economic data (CPI) instead of sensory data (temperature). Additionally, we incorporate teacher forcing technique to facilitate information flow and mitigate the vanishing gradient problem they encountered in their framework. Furthermore, we introduce a normalization layer to enhance model stability and training convergence.
 
@@ -150,7 +151,7 @@ The data for this project was acquired from Statistics Canada (\url{www150.statc
 
 \subsection{Data Source \& Data Files}
 
-The dataset was downloaded as csv files from the Statistics Canada website. The CPI values are reported as indices with the base year set to 2002=100. A subset of the data spanning from January 2003 to the present was extracted for the forecasting process. To facilitate the forecasting process, the data will be divided into training and test sets. The data files are posted on GitHub, and the link to the GitHub repository and a sample file are included in Appendix B.
+The dataset was downloaded as csv files from the Statistics Canada website. The CPI values are reported as indices with the base year set to 2002=100. A subset of the data spanning from January 2003 to the present was extracted for the forecasting process. The data files are posted on GitHub, and the link to the GitHub repository and a sample file are included in Appendix A.
 
 \subsection{Data Structure Analysis}
 
@@ -284,7 +285,7 @@ These findings suggest that the dataset lacks strong seasonality and exhibits no
 \begin{center}
 \section{Problem Statement}
 \end{center}
-The problem of interest in this MRP is a multivariate time series problem. A multivariate time series problem involves analyzing a sequence of observations where each observation consists of multiple variables, aiming to capture dependencies and patterns to make predictions or forecasts (Bjerregaard et al., 2021)~\cite{bjerregaard2021}. Simply, the goal is to model future state based on existing historical data. In the case of the CPI data we anticipate the future value t+1 based on historical values of the endogenous and exogenous variables in the dataset. Mathematically we formulate our problem as :
+The problem of interest in this MRP is a multivariate time series problem. A multivariate time series problem involves analyzing a sequence of observations where each observation consists of multiple variables, aiming to capture dependencies and patterns to make predictions or forecasts (Bjerregaard et al., 2021)~\cite{bjerregaard2021}. Simply, the goal is to model future state based on existing historical data. In the case of the CPI data we anticipate the future value t+1 based on historical values of the endogenous and exogenous variables in the dataset. Although our proposed solution uses a deep learning technique we can transalate our CPI multivariate problem into a simple linear regression and mathematically formulate it as :
 \begin{align*}
 \text{{CPI}}(t) = & \beta_0 + \beta_1 \cdot \text{{All-items}}(t-1) + \beta_2 \cdot \text{{Food}}(t-1) + \beta_3 \cdot \text{{Shelter}}(t-1) \\
 & + \beta_4 \cdot \text{{Household operations}}(t-1) + \beta_5 \cdot \text{{Clothing and footwear}}(t-1) + \beta_6 \cdot \text{{Transportation}}(t-1) \\
@@ -361,13 +362,14 @@ The attention mechanism is a crucial component of this model. It helps the decod
 \textbf{Output and Training:}\\ 
 The concatenated context vector and decoder output are passed through a TimeDistributed dense layer with linear activation, which produces the final output sequence. During training, instead of using the previous decoder output as input for the next step, the true target output sequence is fed into the decoder. This incorporates the teacher forcing technique. The model is compiled with the Adam optimizer and mean squared error (MSE) loss function. It is then trained using the training data and the corresponding target output for 500 epochs with a batch size of 4. After training, the model is evaluated on the test set. The test input sequences are fed into the model to generate predictions. The predictions are then compared with the target output sequence. 
 See Figure 11 for visualization of model architecture.
-\begin{figure}[htb]
+\newpage
+\begin{figure}[H]
   \centering
-  \includegraphics[width=1.1\textwidth]{RNN_plot.png}
-  \caption{RNN LSTM GRU }
-  \label{fig:RNN Attention Encoder Decoder}
-\end{figure}\\
-\vspace{1cm}
+  \includegraphics[width=0.95\textwidth, height=0.75\textheight]{RNNAttention.png}
+  \caption{RNN Attention Encoder Decoder Model with Teacher Force Technique}
+  \label{fig:RNN_Attention_Encoder_Decoder}
+\end{figure}
+\newpage 
 \subsubsection{Experiment 2:  Baseline Models: Traditional Statistical Techniques}
 In this section, we compare our proposed model to the  ARIMA and VAR models. Dondong (2010)~\cite{dongdong2010consumer} advocated for the use of ARIMA and VAR models as effective models for CPI forecasting.\\
 \textbf{Variational Autoencoder Model:}\\
@@ -553,7 +555,7 @@ In  \textbf{Table 3} we see performance for RNN Encoder Decoder Moder for each C
   \caption{RNN Attention Encoder Decoder Model Evaluation Results}
   \label{tab:cpi_results}
 \end{table}
-\\
+
 \noindent
 From the above, the model exhibits exceptional performance across various CPI indicators.  Food, Shelter, Household operations, and Transportation, predictions demonstrated remarkable accuracy, with R2 scores close to 1. The model's impressive performance extends to various other CPI components, including Health and personal care, Recreation \& education, and Alcohol, tobacco \& cannabis. In each case, the model achieved low prediction errors and high R2 scores, indicating its reliable forecasting capabilities across diverse sectors of the economy. The RNN Attention Encoder Decoder Model also proved valuable for forecasting overall inflation trends. When considering All-items, All-items excluding food and energy, and All-items excluding energy, the model produced precise predictions, as reflected by their R2 scores approaching 1. Although the Gasoline CPI category exhibited slightly higher errors in the RMSE, the model's R2 score of 0.999 still suggests that it captures a substantial proportion of the variance in this indicator. Overall, the predictions on the various indicators were good.
 
@@ -599,11 +601,10 @@ While the forecasted trends provide valuable directional cues for policy decisio
 \begin{center}
 \section{Conclusion}
 \end{center}
-In this paper, we proposed an advanced model aimed at providing a more accurate forecast for inflation indicators, such as the CPI. 
-The model leverages an Attention-based RNN Encoder-Decoder architecture with the Teacher Forcing technique.
+In this paper, an Attention-based RNN Encoder-Decoder architecture with the Teacher Forcing technique was leveraged to provide a more accurate forecast for inflation indicators such as CPI.
 The model was designed to bridge the gap between capturing long-term dependencies in CPI data and effectively handle the non-linearity commonly present in such datasets. 
 Additionally, the application of the Teacher Forcing technique served to stabilize and accelerate the model training process while mitigating issues related to error propagation.\\
-\indent The results of our study demonstrated the outstanding performance of the RNN Attention Encoder-Decoder Model, surpassing both traditional approaches and various supervised and deep learning techniques. 
+\indent The results of the research demonstrated the outstanding performance of the RNN Attention Encoder-Decoder Model, surpassing both traditional approaches and various supervised and deep learning techniques. 
 The model achieved an impressively low RMSE of 0.15, indicating its ability to generate predictions close to the actual CPI values. 
 Furthermore, the high R2 value of 0.99 illustrated the model's superior predictive power, explaining almost all of the variance in the CPI data.\\
 While this research has achieved promising results, it is essential to acknowledge its limitations. For example interpertability with attention based decoder encoder mechanisms can be challenging that is understanding exactly how the model makes its decisions and which input elements are most influential in the predictions might not be straightforward. Hence it is very difficult to do any kind of backward engineering.
@@ -611,6 +612,24 @@ Furthermore, while the model performs well with local or regional data, it may f
 \indent Regardless of its limitations the findings of this research make a significant contribution to the field of economic forecasting and underscore the potential of employing advanced deep learning techniques for CPI prediction.
 Moreover, this study opens avenues for future research on economic forecasting, including exploring other transformer methods, attention mechanisms, and hyperparameter tuning techniques such as Scheduled Sampling, which shares similarities with Teacher Forcing.
 As the world continues to address the current inflation crises, the knowledge gained from this study can contribute to making informed decisions and developing effective policies to ensure economic stability and growth.
+
+\newpage
+\appendix
+\section*{Appendix A}
+
+\subsection*{GitHub Repository}
+\url{https://github.com/maamecobbinah/Masters-Research-Project-}
+
+\subsection*{Data Files}
+\url{https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000401}
+
+\subsection*{CPI Reference Paper}
+\url{https://www150.statcan.gc.ca/n1/en/pub/62-553-x/62-553-x2023001-eng.pdf?st=V_SAU7W0}
+
+\subsection*{Additional Resources on Canadian CPI}
+\url{https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2301#a2}
+
+
 
 
 \begin{thebibliography}{9}
@@ -680,3 +699,4 @@ Deng, L., \& Pan, Y. (2021). Data-driven proxy model for waterflood performance 
 Lungu, C. (2020). Machine Learning Blog: Training an RNN with teacher forcing. Retrieved from \url{http://www.clungu.com/Teacher-Forcing/}
 \end{thebibliography}
 \end{document}
+
