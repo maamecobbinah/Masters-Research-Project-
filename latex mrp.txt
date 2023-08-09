@@ -67,7 +67,7 @@ Maame Cobbinah
 The Canadian Consumer Price Index (CPI) is an important macro-economic indicator that measures the average price change of goods and services purchased by households over time. It is one of the indicators commonly used by the Canadian government and the Bank of Canada for fiscal and monetary policies in areas such as adjusting interests rates, modifying consumer income payments for pensions and old age security, as well as providing cost-of-living wage adjustments for millions of Canadian workers. While traditional statistical methods have been useful in CPI forecasting, advancements in deep learning techniques and the availability of big data allow for more sophisticated and accurate forecasting methods. This MRP proposes a novel deep learning approach that utilizes Recurrent Neural Network (RNN) encoder-decoder attention mechanisms in forecasting the Canadian CPI. This method has shown promising results in various  forecasting applications and has the potential to enhance the accuracy and efficiency of CPI forecasting.
 
 \vspace{1.5cm}
-\textbf{Keywords:} \textit{CPI, Goods \& Services, Prices , Indicators, Forecasting, Statistical methods, Deep learning, Attention, RNN, Encoder, Decoder}
+\textbf{Keywords:} \textit{Consumer Price Index, Macro-Economic Indicators, Forecasting, RNN Encoder Decoder, Deep learning Techniques, Attention Mechanisms}
 \newpage
 \pagenumbering{roman}
 \begin{center}
@@ -316,13 +316,26 @@ Refer to Figure 8 for a basic depiction of RNN, LSTM, and GRU architectures.\\
   \label{fig:lstm_rnn_gru}
 \end{figure}\\
 \subsection{RNN Attention Encoder Decoder Model}
-The RNN Encoder-Decoder model is an advanced version of the recurrent neural network architecture first introduced by Cho et al.(2014) ~\cite{cho2014learning} .  The model's goal is to encode input sequences into a fixed-length vector representation, and then decode them to generate output sequences (Cho et al, 2014) ~\cite{cho2014learning}. The encoder component captures the input sequence information, while the decoder component generates the corresponding output sequence. The RNN Encoder-Decoder model has demonstrated significant success in various applications, such as machine translation, speech recognition, and text generation. Researchers have identified that the integration of attention layers can greatly improve this model. By incorporating attention layers, these models are liberated from the limitation of encoding input sequences into fixed-length vectors (Zhang et al.,2014)~\cite{zhang2018attention}. This advancement allows for more flexible and effective information processing, enhancing the model's ability to capture important dependencies across the input sequence. See Figure 9 for basic RNN Attention Encoder Decoder Architecture.\\
+The RNN Encoder-Decoder model is an advanced version of the recurrent neural network architecture first introduced by Cho et al.(2014) ~\cite{cho2014learning} .  The model's goal is to encode input sequences into a fixed-length vector representation, and then decode them to generate output sequences (Cho et al, 2014) ~\cite{cho2014learning}. The encoder component captures the input sequence information, while the decoder component generates the corresponding output sequence. The encoder hidden states is mathematically computed as
+\begin{align*}
+h_t = f(W_{hh} h_{t-1} + W_{hx} x_t)
+\end{align*}
+whereas the  decoder hidden states we can mathematically compute it as: 
+\begin{align*}
+h_t = f(W_{hh} h_{t-1})
+\end{align*}
+In our proposed model the output layer will use a softmax activation function  which can also be computed as:
+\begin{align*}
+y_t = \text{softmax}(W_s h_t)
+\end{align*}
+See Appendix B for the description of each variable in the above formulas.\\
+The RNN Encoder-Decoder model has demonstrated significant success in various applications, such as machine translation, speech recognition, and text generation. Researchers have identified that the integration of attention layers can greatly improve this model. By incorporating attention layers, these models are liberated from the limitation of encoding input sequences into fixed-length vectors (Zhang et al.,2014)~\cite{zhang2018attention}. This advancement allows for more flexible and effective information processing, enhancing the model's ability to capture important dependencies across the input sequence. See Figure 9 for basic RNN Attention Encoder Decoder Architecture.\\
 \begin{figure}[htb]
   \centering
   \includegraphics[width=1.1\textwidth]{RNN_Encoder_Decoder.png}
   \caption{ RNN Attention Encoder Decoder Model (adapted from Brownlie, 2018 ~\cite{brownlee2018})}
   \label{fig:lstm_rnn_gru}
-\end{figure}\\
+\end{figure}
 Although the RNN Encoder-Decoder model has been applied to various forecasting tasks, such as earthquake size prediction by Li et al. (2022) ~\cite{lipan2022} and electricity load forecasting by Xiong et al. (2021) ~\cite{xiong2021}, it has not yet been applied to CPI data. Our proposed model stands out from existing literature not only due to its application to macroeconomic data but also because of the incorporation of attention layers and the introduction of the teacher forcing technique.
 The teacher force technique involves using the true target sequence as input for the decoder, rather than using the predicted output from the previous time step (Deng \& Pan, 2021) ~\cite{deng2021}. Teacher forcing stabilizes the training process by providing accurate target values as inputs, thereby preventing error propagation and accelerating learning. It ensures more precise and informative inputs for the decoder, allowing the model to converge faster and improve gradient flow. See Figure 10 for basic architecture of RNN using Teacher Forcing techniques.
 \begin{figure}[htb]
@@ -330,9 +343,9 @@ The teacher force technique involves using the true target sequence as input for
   \includegraphics[width=1.1\textwidth]{RNN_teacherforcing.png}
   \caption{ RNN with Teacher Forcing (adapted from Lungu, 2020 ~\cite{lungu2020})}
   \label{fig:lstm_rnn_gru}
-\end{figure}\\
+\end{figure}
 
-\newpage 
+\clearpage
 \begin{center}
 \section{Experimentation}
 \end{center}
@@ -628,7 +641,45 @@ As the world continues to address the current inflation crises, the knowledge ga
 
 \subsection*{Additional Resources on Canadian CPI}
 \url{https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2301#a2}
+\newpage
+\section*{Appendix B}
+\subsection*{Description of Encoder Decoder mathematical formula}
+Encoder layer hidden state is calculated as:
+\begin{align*}
+h_t = f(W_{hh} h_{t-1} + W_{hx} x_t)
+\end{align*}
+Where:
+\begin{itemize}
+  \item \(h_t\) is the hidden state of the encoder at time \(t\).
+  \item \(W_{hh}\) is the weight matrix for the hidden state to hidden state transformation.
+  \item \(W_{hx}\) is the weight matrix for the input to hidden state transformation.
+  \item \(h_{t-1}\) is the previous hidden state of the encoder at time \(t-1\).
+  \item \(x_t\) is the input at time \(t\).
+  \item \(f\) is the activation function.
+\end{itemize}\\
 
+Decoder layer hidden state is calculated as: 
+\begin{align*}
+h_t = f(W_{hh} h_{t-1})
+\end{align*}
+Where:
+\begin{itemize}
+  \item \(h_t\) is the hidden state of the decoder at time \(t\).
+  \item \(W_{hh}\) is the weight matrix for the hidden state to hidden state transformation.
+  \item \(h_{t-1}\) is the previous hidden state of the decoder at time \(t-1\).
+  \item \(f\) is the activation function.
+\end{itemize}\\
+
+Softmax activation function is calculated as :
+\begin{align*}
+y_t = \text{softmax}(W_s h_t)
+\end{align*}
+Where:
+\begin{itemize}
+  \item \(y_t\) is the output at time step \(t\).
+  \item \(\text{softmax}\) is the softmax activation function that normalizes the logits into a probability distribution.
+  \item \(W_s\) is the weight matrix for the transformation from the hidden state \(h_t\) to the output \(y_t\).
+\end{itemize}
 
 
 
