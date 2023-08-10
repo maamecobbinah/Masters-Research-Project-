@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{tocloft}
 \usepackage{natbib}
 \usepackage{colortbl}
 \usepackage{subcaption}
@@ -50,6 +51,7 @@ BSc Economics and Statistics, University of Victoria, 2017\\
 \pagenumbering{roman}
 \begin{center}
 \textbf{Author's Declaration for Electronic Submission of a Major Research Project (MRP)}
+\addcontentsline{toc}{chapter}{Authors Declaration}
 \end{center}
 \doublespacing
 I hereby declare that I am the sole author of this Major Research Paper. This is a true copy of the MRP, including any required final revisions.
@@ -62,25 +64,88 @@ Maame Cobbinah
 \begin{center}
 \centering
 \textbf{Abstract}\
+\addcontentsline{toc}{chapter}{Abstract}
 \end{center}
 \doublespacing
-The Canadian Consumer Price Index (CPI) is an important macro-economic indicator that measures the average price change of goods and services purchased by households over time. It is one of the indicators commonly used by the Canadian government and the Bank of Canada for fiscal and monetary policies in areas such as adjusting interests rates, modifying consumer income payments for pensions and old age security, as well as providing cost-of-living wage adjustments for millions of Canadian workers. While traditional statistical methods have been useful in CPI forecasting, advancements in deep learning techniques and the availability of big data allow for more sophisticated and accurate forecasting methods. This MRP proposes a novel deep learning approach that utilizes Recurrent Neural Network (RNN) encoder-decoder attention mechanisms in forecasting the Canadian CPI. This method has shown promising results in various  forecasting applications and has the potential to enhance the accuracy and efficiency of CPI forecasting.
+This MRP proposes a novel deep learning approach that utilizes a RNN encoder-decoder Attention model with Teacher-Force technique to forecast the Canadian Consumer Price Index (CPI). Although this method is quite complex in its implementation, it performs well with macroeconomic data, such as the CPI, due to its ability to model long-term dependencies in inflationary variables and reduce forecasting errors. The experimental part of this paper focuses on evaluating the performance of the proposed method, along with traditional methods, supervised learning techniques, and other deep learning approaches. The results show that the RNN Encoder-Decoder Attention Model with Teacher Force Technique outperforms existing methodologies in the literature, generating lower errors and improving R-squared values across all CPI indicators.
 
 \vspace{1.5cm}
-\textbf{Keywords:} \textit{Consumer Price Index, Macro-Economic Indicators, Forecasting, RNN Encoder Decoder, Deep learning Techniques, Attention Mechanisms}
+\textbf{Keywords:} \textit{Consumer Price Index, macroeconomic data, Forecasting, RNN Encoder Decoder, Deep learning Techniques, Attention Mechanisms}
+
+
 \newpage
-\pagenumbering{roman}
 \begin{center}
 \textbf{ACKNOWLEDGEMENTS}
+\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
 \end{center}
 \doublespacing
 I am deeply grateful to Dr. Aliaa Alnaggar, my supervisor, for her invaluable guidance and support during my Master's research project. Her expertise and insightful suggestions have been instrumental in shaping my work.
 I am thankful for her continuous encouragement and feedback, which greatly contributed to the successful completion of my project. I am sincerely thankful for her unwavering support and mentorship throughout this journey.\\
 Thank you,\\
 Professor Aliaa Alnaggar
+
+
+
+
+
+
+
 \newpage
 \renewcommand{\contentsname}{TABLE OF CONTENTS} 
 \tableofcontents
+
+\renewcommand{\listoftables}{%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{List of Tables}
+\section*{List of Tables}
+  \begin{center}
+    \begin{tabular}{@{}l p{0.6\linewidth} r@{}}
+      \textbf{Table} & \textbf{Description} & \textbf{Page} \\
+      \hline
+      Table 1 & CPI Data Fields and Description & \pageref{table:data-fields} \\
+      Table 2 & Overall Results Proposed model vs Baseline Models & \pageref{tab:evaluation} \\
+      Table 3 & Proposed Model Results RNN Encoder Decoder Attention Model for each CPI indicator & \pageref{tab:cpi_results} \\
+      Table 4 & Proposed Model Forecast May 2023 – Oct 2023 & \pageref{tab:cpi_data} \\
+      % Add more entries for other tables
+    \end{tabular}
+  \end{center}
+}
+\listoftables
+
+\clearpage % Add a new page before the List of Figures
+\renewcommand{\listoffigures}{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{section}{List of Figures}
+  \section*{List of Figures}
+  \begin{center}
+    \begin{tabular}{@{}l p{0.6\linewidth} r@{}}
+      \textbf{Figure} & \textbf{Description} & \textbf{Page} \\
+      \hline
+      Figure 1 & Summary Statistics & \pageref{fig:summary-statistics} \\
+      Figure 2 & Time Series Trending Graph CPI 2003 to 2023 & \pageref{fig:CPI-lineplot} \\
+      Figure 3 & Bar plot Average CPI by product Category & \pageref{fig:category-breakdown barplot} \\
+      Figure 4 & Bar plot Average CPI by product Category & \pageref{fig:distribution boxplot} \\
+      Figure 5 & Heat Map (All -items Category)& 
+      \pageref{fig:pattern-heatplot} \\
+      Figure 6 & ETS Seasonal Decomposition Graph  & 
+      \pageref{fig:ets-decomposition}\\
+      Figure 7 & Autocorrelation Graph of Overall CPI  & \pageref{fig:autocorrelation} \\
+      Figure 8 & Basic Depiction of RNN LSTM GRU  & \pageref{fig:lstm_rnn_gru} \\
+      Figure 9 & Model Visualization RNN Attention Encoder Decoder Model & \pageref{fig:RNNAttention_EncoderDecoder} \\
+      Figure 10 & Model Depiction RNN with Teacher Force Implementation  & \pageref{fig:teacherforcing} \\
+      Figure 11 & Proposed Model Visualization: RNN Attention Encoder Decoder Model with Teacher Force & 
+      \pageref{fig:RNN_Attention_Encoder_Decoder} \\
+      Figure 12 & Actual vs Prediction for Model Experiments (6 time steps)  & \pageref{fig:grid} \\
+    \end{tabular}
+  \end{center}
+}
+
+\listoffigures
+
+
+
 \newpage
 \begin{center}
 \pagenumbering{arabic}
@@ -334,7 +399,7 @@ The RNN Encoder-Decoder model has demonstrated significant success in various ap
   \centering
   \includegraphics[width=1.1\textwidth]{RNN_Encoder_Decoder.png}
   \caption{ RNN Attention Encoder Decoder Model (adapted from Brownlie, 2018 ~\cite{brownlee2018})}
-  \label{fig:lstm_rnn_gru}
+  \label{fig:RNNAttention_EncoderDecoder}
 \end{figure}
 Although the RNN Encoder-Decoder model has been applied to various forecasting tasks, such as earthquake size prediction by Li et al. (2022) ~\cite{lipan2022} and electricity load forecasting by Xiong et al. (2021) ~\cite{xiong2021}, it has not yet been applied to CPI data. Our proposed model stands out from existing literature not only due to its application to macroeconomic data but also because of the incorporation of attention layers and the introduction of the teacher forcing technique.
 The teacher force technique involves using the true target sequence as input for the decoder, rather than using the predicted output from the previous time step (Deng \& Pan, 2021) ~\cite{deng2021}. Teacher forcing stabilizes the training process by providing accurate target values as inputs, thereby preventing error propagation and accelerating learning. It ensures more precise and informative inputs for the decoder, allowing the model to converge faster and improve gradient flow. See Figure 10 for basic architecture of RNN using Teacher Forcing techniques.
@@ -342,7 +407,7 @@ The teacher force technique involves using the true target sequence as input for
   \centering
   \includegraphics[width=1.1\textwidth]{RNN_teacherforcing.png}
   \caption{ RNN with Teacher Forcing (adapted from Lungu, 2020 ~\cite{lungu2020})}
-  \label{fig:lstm_rnn_gru}
+  \label{fig:teacherforcing}
 \end{figure}
 
 \clearpage
@@ -539,7 +604,7 @@ The deviation between the predicted value and the ground-truth value for the pro
 
 \newpage
 \noindent
-In  \textbf{Table 3} we see performance for RNN Encoder Decoder Moder for each CPI Indicator 
+In  \textbf{Table 3} we see performance for RNN Attention Encoder Decoder Moder for each CPI Indicator 
 
 \begin{table}[htbp]
   \centering
@@ -641,6 +706,7 @@ As the world continues to address the current inflation crises, the knowledge ga
 
 \subsection*{Additional Resources on Canadian CPI}
 \url{https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2301#a2}
+
 \newpage
 \section*{Appendix B}
 \subsection*{Description of Encoder Decoder mathematical formula}
