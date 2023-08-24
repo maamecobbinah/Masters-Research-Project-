@@ -1,3 +1,4 @@
+
 \documentclass[11pt]{report}
 \usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{setspace}
@@ -67,10 +68,10 @@ Maame Cobbinah
 \addcontentsline{toc}{chapter}{Abstract}
 \end{center}
 \doublespacing
-This MRP proposes a novel deep learning approach that utilizes a RNN encoder-decoder Attention model with Teacher-Force technique to forecast the Canadian Consumer Price Index (CPI). Although this method is quite complex in its implementation, it performs well with macroeconomic data, such as the CPI, due to its ability to model long-term dependencies in inflationary variables and reduce forecasting errors. The experimental part of this paper focuses on evaluating the performance of the proposed method, along with traditional methods, supervised learning techniques, and other deep learning approaches. The results show that the RNN Encoder-Decoder Attention Model with Teacher Force Technique outperforms existing methodologies in the literature, generating lower errors and improving R-squared values across all CPI indicators.
+This paper proposes a novel deep learning approach that utilizes a RNN encoder-decoder Attention model with Teacher-Force technique to forecast the Canadian Consumer Price Index (CPI). Although this method is quite complex in its implementation, it performs well with macroeconomic data, such as the CPI, due to its ability to model long-term dependencies in inflationary variables and reduce forecasting errors. The experimental part of this paper focuses on evaluating the performance of the proposed method, along with traditional methods, supervised learning techniques, and other deep learning approaches. The results show that the RNN Encoder-Decoder Attention Model with Teacher Force Technique outperforms existing methodologies in the literature, generating lower errors and improving R-squared values across all CPI indicators.
 
 \vspace{1.5cm}
-\textbf{Keywords:} \textit{Consumer Price Index, macroeconomic data, Forecasting, RNN Encoder Decoder, Deep learning Techniques, Attention Mechanisms}
+\textbf{Keywords:} \textit{Consumer Price Index, macroeconomic data, Forecasting, RNN Encoder-Decoder, Deep learning, Attention Models, Teacher Force Technique}
 
 
 \newpage
@@ -171,7 +172,8 @@ The CPI is a good inflation indicator as it calculated based on the representati
 Despite its usefulness, the CPI has some challenges in terms of measurement. For example, quality adjustments is very hard to measure. Although, the CPI aims to measure price changes while holding the quality of goods and services constant, the improvements in the quality of products over time, such as advancements in technology or changes in product features, are not always adequately accounted for in the index. This can result in an underestimation of the true cost of living. Secondly, it is hard to take geographical variation into account when looking at the aggregated index value. The CPI represents an average measure of inflation for the entire country. It may not capture regional variations in prices, where different areas experience different rates of inflation. For example, the cost of transporting food to Northern Canada turns to be higher and hence food prices are relatively higher in these areas compared to the rest of Canada. The aggregated gross value may hide these important details .
 \vspace{1cm}\\
 \subsection{Research Question}
-The main objective of this research is to assess whether advanced deep learning techniques, specifically encoder-decoder attention mechanisms can outperform traditional time series models and other supervised machine learning algorithms  such as VAR,  ARIMA, Lasso Regressors, Support Vector Regressors, Random Forest Regressors and other baseline models when applied to macro-economic data for forecasting purposes.
+The core of this MRP centers around the fundamental research question: Can the RNN encoder-decoder attention mechanisms effectively enhance the accuracy and effectiveness of CPI forecasting? The exploration of this question seeks to shed light on whether RNN encoder-decoder attention mechanisms stand as a promising avenue for improving the accuracy and reliability of CPI forecasts, ultimately contributing to the advancement of predictive modeling in economics.
+
 
 \vspace{1.5cm}
 \subsection{Independent/Dependent Variables}
@@ -200,7 +202,8 @@ Similarly, Chen (2022)~\cite{chen2022} incorporated attention mechanisms based o
 Li et al. (2018)~\cite{li2018stock} also introduced an attention-based multi-input LSTM model for stock price prediction. Their study focused on China's CSI-300 index and incorporated a dual-stage attention mechanism using a mainstream factor and three auxiliary factors. The MI-LSTM model achieved a significant 9.96\% improvement in mean square error compared to the LSTM model, demonstrating its effectiveness in stock price prediction.
 Finally, Du et al. (2020)~\cite{du2020multivariate} proposed an effective approach for forecasting multi-step time series values using an attention-based encoder-decoder framework. The framework incorporates a bidirectional Long Short-Term Memory (Bi-LSTM) as the encoder, an LSTM as the decoder, and a temporal attention context layer. The authors evaluated their model on five public datasets and demonstrate its superiority over benchmark models, achieving better results in terms of RMSE and MAE.\\
 
-The model used in this MRP shares a similar framework with the one proposed by Wang et al. (2022)~\cite{wang2022attention}. Their model employs an attention-based RNN encoder-decoder model for multi-step forecasting of sensory time series. The model captures interrelationships among heterogeneous parameters, employing spatial and parameter-wise attention layers in the encoders and temporal attention in the decoders for multi-step forecasting. However, there are notable differences in the approach adopted in this MRP versus Wang et al. (2022)~\cite{wang2022attention} . First, the model in this paper focuses on economic data (CPI) instead of sensory data (temperature). Additionally, we incorporate teacher forcing technique to facilitate information flow and mitigate the vanishing gradient problem they encountered in their framework. Furthermore, we introduce a normalization layer to enhance model stability and training convergence.
+The model used in this MRP shares a similar framework with the one proposed by Wang et al. (2022)~\cite{wang2022attention}. Their model employs an attention-based RNN encoder-decoder model for multi-step forecasting of sensory time series. The model captures interrelationships among heterogeneous parameters, employing spatial and parameter-wise attention layers in the encoders and temporal attention in the decoders for multi-step forecasting. However, there are notable differences in the approach adopted in this MRP versus Wang et al. (2022)~\cite{wang2022attention} . First, the model in this paper focuses on economic data (CPI) instead of sensory data (temperature). 
+Additionally, the incorporation of the teacher forcing technique aids in enhancing information flow and addressing the vanishing gradient problem encountered in the framework. Furthermore, this MRP introduces a normalization layer to enhance model stability and training convergence.
 
 
 \newpage 
@@ -281,7 +284,7 @@ The dataset includes fields such as the reference date period (grouped by month)
 % ...
 \newpage % Add a new page before EDA
 \subsection{Data Analysis and Statistics}
-Our dataset consists of 244 rows and includes 1 dependent variable (All items category) and 15 independent variables. Summary statistics for each category are presented in Figure \ref{fig:summary-statistics}, providing insights into the distribution, central tendency, and variability of the data.
+The dataset consists of 244 rows and includes 1 dependent variable (All items category) and 15 independent variables. Summary statistics for each category are presented in Figure \ref{fig:summary-statistics}, providing insights into the distribution, central tendency, and variability of the data.
 \vspace{0.5cm}
 \begin{figure}[htb]
   \centering
@@ -290,7 +293,7 @@ Our dataset consists of 244 rows and includes 1 dependent variable (All items ca
   \label{fig:summary-statistics}
 \end{figure}
 \newpage 
-In Figure 2, we use a time series plot to illustrate the trends of the various categories. Overall, CPI values have shown a consistent increase month over month, with the exception of clothing and footwear. Notably, categories such as gasoline, energy, and alcohol and cannabis exhibit high volatility, featuring significant peaks and exponential growth since 2003.
+Figure 2, uses a time series plot to illustrate the trends of the various categories. Overall, CPI values have shown a consistent increase month over month, with the exception of clothing and footwear. Notably, categories such as gasoline, energy, and alcohol and cannabis exhibit high volatility, featuring significant peaks and exponential growth since 2003.
 \vspace{0.5cm}
 \begin{figure}[htb]
   \centering
@@ -299,7 +302,7 @@ In Figure 2, we use a time series plot to illustrate the trends of the various c
   \label{fig:CPI-lineplot}
 \end{figure}
 \newpage
-Figure 3 provides an overview of the average Consumer Price Index (CPI) per product category. The data reveals that, on average, CPI values have increased by 23\% across all items. Notably, certain categories show even higher average increases. Gasoline, energy, alcohol, food, and shelter have experienced average increases of 60\%, 50\%, 44\%, 31\%, and 30\%, respectively.
+Figure 3, provides an overview of the average Consumer Price Index (CPI) per product category. The data reveals that, on average, CPI values have increased by 23\% across all items. Notably, certain categories show even higher average increases. Gasoline, energy, alcohol, food, and shelter have experienced average increases of 60\%, 50\%, 44\%, 31\%, and 30\%, respectively.
 These findings indicate that households, on average, allocate a significant portion of their spending—30\% or more—towards these specific products. Gasoline, energy, alcohol, food, and shelter play a substantial role in the average household budget, reflecting the impact of rising prices within these categories.
 \vspace{0.5cm}
 \begin{figure}[htb]
@@ -311,7 +314,7 @@ These findings indicate that households, on average, allocate a significant port
 \newpage
 The distribution of the data is illustrated in Figure 4 through box plots. It is evident that most product categories have a lower quartile value greater than 100, except for clothing. This suggests that, compared to 2003, the Consumer Price Index (CPI) has increased for all categories except clothing.
 The upper quartiles vary across different product categories. Notably, categories such as transportation, gasoline, and energy exhibit extreme outliers. These outliers represent data points that deviate significantly from the overall pattern or distribution of the dataset. They are observations that lie far away from the majority of the data points and can have a disproportionate impact on statistical measures and forecasting results.
-During the modeling process, it may be necessary to remove these outliers from our training set to prevent them from causing forecasting errors. By eliminating these extreme values, we can ensure more accurate and reliable predictions.
+During the modeling process, it may be necessary to remove these outliers from the training set to prevent them from causing forecasting errors. By removing these extreme values, a higher degree of accuracy and reliability can be ensured in predictions.
 \vspace{0.5cm}
 \begin{figure}[htb]
   \centering
@@ -320,7 +323,7 @@ During the modeling process, it may be necessary to remove these outliers from o
   \label{fig:distribution boxplot}
 \end{figure}
 \newpage
-In Figure 5, we analyze the overall Consumer Price Index (All-Item Category) data using a heatmap. The heatmap reveals that there are no discernible patterns or variations in CPI values by month, indicating the absence of monthly seasonality. However, when observing the heatmap over a longer time frame, we observe a deepening of color, particularly in the last two years. This deepening color indicates a consistent growth in CPI compared to the base period of 2002.
+In Figure 5, the overall Consumer Price Index (All-Item Category) data is shown using a heatmap. The heatmap reveals that there are no discernible patterns or variations in CPI values by month, indicating the absence of monthly seasonality. However, when observing the heatmap over a longer time frame, the colour deepens, particularly in the last two years. This deepening color indicates a consistent growth in CPI compared to the base period of 2002.
 These findings suggest that while there are no specific months with notably high CPI values indictive of seasonality, the overall trend of CPI has exhibited a steady increase since 2003, with a more pronounced growth in recent years.
 \vspace{0.5cm}
 \begin{figure}[htb]
@@ -338,7 +341,7 @@ The ETS seasonal decomposition in Figure 6 further supports the observation that
   \label{fig:ets-decomposition}
 \end{figure}
 \newpage
-Additionally, the Autocorrelation plot in Figure 7 demonstrates that the values in the "All-items" category are non-stationary. The plot illustrates a slow decay or gradual decline in autocorrelation values as the lag increases. This pattern is indicative of non-stationarity in the data
+Additionally, the Autocorrelation plot in Figure 7 demonstrates that the values in the "All-items" category are non-stationary. The plot illustrates a slow decay or gradual decline in autocorrelation values as the lag increases. This pattern is indicative of non-stationarity in the data.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=1.0\textwidth]{autocorrelation.png}
@@ -350,7 +353,7 @@ These findings suggest that the dataset lacks strong seasonality and exhibits no
 \begin{center}
 \section{Problem Statement}
 \end{center}
-The problem of interest in this MRP is a multivariate time series problem. A multivariate time series problem involves analyzing a sequence of observations where each observation consists of multiple variables, aiming to capture dependencies and patterns to make predictions or forecasts (Bjerregaard et al., 2021)~\cite{bjerregaard2021}. Simply, the goal is to model future state based on existing historical data. In the case of the CPI data we anticipate the future value t+1 based on historical values of the endogenous and exogenous variables in the dataset. Although our proposed solution uses a deep learning technique we can transalate our CPI multivariate problem into a simple linear regression and mathematically formulate it as :
+The problem of interest in this MRP is a multivariate time series problem. A multivariate time series problem involves analyzing a sequence of observations where each observation consists of multiple variables, aiming to capture dependencies and patterns to make predictions or forecasts (Bjerregaard et al., 2021)~\cite{bjerregaard2021}. Simply, the goal is to model future state based on existing historical data. For the CPI data, the anticipation of the future value t+1 is rooted in historical values of both endogenous and exogenous variables within the dataset.  Despite the utilization of a deep learning approach in the proposed solution, the data can also be  translated into a basic linear regression problem, mathematically formulated as:
 \begin{align*}
 \text{{CPI}}(t) = & \beta_0 + \beta_1 \cdot \text{{All-items}}(t-1) + \beta_2 \cdot \text{{Food}}(t-1) + \beta_3 \cdot \text{{Shelter}}(t-1) \\
 & + \beta_4 \cdot \text{{Household operations}}(t-1) + \beta_5 \cdot \text{{Clothing and footwear}}(t-1) + \beta_6 \cdot \text{{Transportation}}(t-1) \\
@@ -372,7 +375,7 @@ Where:
 \begin{center}
 \section{Methodology}
 \end{center}
-In this paper, the proposed method for our forecasting problem is the Recurrent Neural Network (RNN) Encoder-Decoder model with self attention layers using teacher forcing technique. Before discussing the model, it is essential to provide a brief overview of the fundamental RNN architecture. RNNs are neural networks designed to model sequential data, where each value is influenced by preceding values (Mandic \& Chambers, 2001) ~\cite{Manic2001}. There are two types of RNNs commonly used: LSTM and GRU. 
+The proposed method for the CPI forecasting problem is the Recurrent Neural Network (RNN) Encoder-Decoder model with self attention layers using teacher forcing technique. Before discussing the model, it is essential to provide a brief overview of the fundamental RNN architecture. RNNs are neural networks designed to model sequential data, where each value is influenced by preceding values (Mandic \& Chambers, 2001) ~\cite{Manic2001}. There are two types of RNNs commonly used: LSTM and GRU. 
 Refer to Figure 8 for a basic depiction of RNN, LSTM, and GRU architectures.\\
 \begin{figure}[htb]
   \centering
@@ -385,23 +388,23 @@ The RNN Encoder-Decoder model is an advanced version of the recurrent neural net
 \begin{align*}
 h_t = f(W_{hh} h_{t-1} + W_{hx} x_t)
 \end{align*}
-whereas the  decoder hidden states we can mathematically compute it as: 
+whereas the  decoder hidden states is mathematically compute it as: 
 \begin{align*}
 h_t = f(W_{hh} h_{t-1})
 \end{align*}
-In our proposed model the output layer will use a softmax activation function  which can also be computed as:
+In the proposed model the output layer will use a softmax activation function  which can also be computed as:
 \begin{align*}
 y_t = \text{softmax}(W_s h_t)
 \end{align*}
 See Appendix B for the description of each variable in the above formulas.\\
-The RNN Encoder-Decoder model has demonstrated significant success in various applications, such as machine translation, speech recognition, and text generation. Researchers have identified that the integration of attention layers can greatly improve this model. By incorporating attention layers, these models are liberated from the limitation of encoding input sequences into fixed-length vectors (Zhang et al.,2014)~\cite{zhang2018attention}. This advancement allows for more flexible and effective information processing, enhancing the model's ability to capture important dependencies across the input sequence. See Figure 9 for basic RNN Attention Encoder Decoder Architecture.\\
+The RNN Encoder-Decoder model has demonstrated significant success in various applications, such as machine translation, speech recognition, and text generation. Researchers have identified that the integration of attention layers can greatly improve this model. By incorporating attention layers, these models are liberated from the limitation of encoding input sequences into fixed-length vectors (Zhang et al.,2014)~\cite{zhang2018attention}. This advancement allows for more flexible and effective information processing, enhancing the model's ability to capture important dependencies across the input sequence. See Figure 9 for a visual depiction of the RNN Attention Encoder Decoder Architecture.\\
 \begin{figure}[htb]
   \centering
   \includegraphics[width=1.1\textwidth]{RNN_Encoder_Decoder.png}
   \caption{ RNN Attention Encoder Decoder Model (adapted from Brownlie, 2018 ~\cite{brownlee2018})}
   \label{fig:RNNAttention_EncoderDecoder}
 \end{figure}
-Although the RNN Encoder-Decoder model has been applied to various forecasting tasks, such as earthquake size prediction by Li et al. (2022) ~\cite{lipan2022} and electricity load forecasting by Xiong et al. (2021) ~\cite{xiong2021}, it has not yet been applied to CPI data. Our proposed model stands out from existing literature not only due to its application to macroeconomic data but also because of the incorporation of attention layers and the introduction of the teacher forcing technique.
+Although the RNN Encoder-Decoder model has been applied to various forecasting tasks, such as earthquake size prediction by Li et al. (2022) ~\cite{lipan2022} and electricity load forecasting by Xiong et al. (2021) ~\cite{xiong2021}, it has not yet been applied to CPI data. The proposed model stands out from existing literature not only due to its application to macroeconomic data but also because of the incorporation of attention layers and the introduction of the teacher forcing technique.
 The teacher force technique involves using the true target sequence as input for the decoder, rather than using the predicted output from the previous time step (Deng \& Pan, 2021) ~\cite{deng2021}. Teacher forcing stabilizes the training process by providing accurate target values as inputs, thereby preventing error propagation and accelerating learning. It ensures more precise and informative inputs for the decoder, allowing the model to converge faster and improve gradient flow. See Figure 10 for basic architecture of RNN using Teacher Forcing techniques.
 \begin{figure}[htb]
   \centering
@@ -424,7 +427,7 @@ In this experiment, the factors are the different statistical models with differ
 \subsubsection{Data Preprocessing}
 This work utilizes monthly CPI data released by Statistics Canada. The dataset spans from January 2003 to April 2023 and was downloaded as a CSV file from the Stats Can website. The dataset had no missing values, but there were outliers which were removed before experimentation.
 \subsubsection{Feature Selection and Experimental Design}
-The data was split into training, validation, and test sets. For our proposed model, the training and validation set consist of the first 232 months, while the test set includes the last 12 months. Within the training and validation set, the first 80\% of the measurements are used for training, and the remaining 20\% are used for validation. \\
+The data was split into training, validation, and test sets. The proposed model has a training and validation set consisting of the first 232 months, while the test set includes the last 12 months. Within the training and validation set, the first 80\% of the measurements are used for training, and the remaining 20\% are used for validation. \\
 \subsubsection{Cross Validation}
 To compare different forecasting models, a validation technique is implemented. Time series cross-validation is used in this project to measure accuracy using R2 score, SMAPE (Symmetric mean absolute percentage error), RMSE (Root Mean Square Error), and MAPE (Mean Absolute Percentage Error) between actual and predicted data
 \subsection{Experiment Performance and Revisions}
@@ -432,9 +435,9 @@ A series of experiments were conducted to fine-tune the predicted values and imp
 \vspace{1cm}
 \subsubsection{Experiment 1: Proposed Model (Attention RNN Encoder Decoder Model).}
 \textbf{Encoder:} \\
-The proposed model begins with an encoder layer. The encoder part of the model takes the input sequence (in our case the CPI index values) as input. In our dataset this is a sequence of one-dimensional data. The input sequence is fed into an LSTM (Long Short-Term Memory) layer. The LSTM layer has 180 units and is set to return the sequences as well as the final hidden and cell states. The output of the encoder LSTM layer is stored in encoder\_outputs, and the final hidden and cell states are stored in state\_h and state\_c, respectively. These states capture the information from the input sequence and will be used as the initial states for the decoder.\\
+The proposed model begins with an encoder layer. The encoder part of the model takes the input sequence (the CPI index values) as input. In the dataset this is a sequence of one-dimensional data. The input sequence is fed into an LSTM (Long Short-Term Memory) layer. The LSTM layer has 180 units and is set to return the sequences as well as the final hidden and cell states. The output of the encoder LSTM layer is stored in encoder\_outputs, and the final hidden and cell states are stored in state\_h and state\_c, respectively. These states capture the information from the input sequence and will be used as the initial states for the decoder.\\
 \textbf{Decoder:} \\
-The decoder part of the model takes the target sequence as input, which is also a sequence of one-dimensional data for our CPI data. During training, the decoder input sequence is the true target output sequence. The input sequence is passed through an LSTM layer with 180 units. The LSTM layer is set to return the sequences as well as the hidden and cell states. The output of the decoder LSTM layer is stored in decoder outputs, but the hidden and cell states are not used directly in this model. Instead, they are used to initialize the decoder states with the information captured by the encoder. This allows the decoder to generate an output sequence based on the input sequence. \\
+The decoder part of the model takes the target sequence as input, which is also a sequence of one-dimensional data for the CPI data. During training, the decoder input sequence is the true target output sequence. The input sequence is passed through an LSTM layer with 180 units. The LSTM layer is set to return the sequences as well as the hidden and cell states. The output of the decoder LSTM layer is stored in decoder outputs, but the hidden and cell states are not used directly in this model. Instead, they are used to initialize the decoder states with the information captured by the encoder. This allows the decoder to generate an output sequence based on the input sequence. \\
 \textbf {Attention Mechanism:}\\ 
 The attention mechanism is a crucial component of this model. It helps the decoder focus on relevant parts of the input sequence during the generation of each output. In this implementation, the attention mechanism is implemented using the dot product attention. First, the dot product between the decoder outputs (decoder\_outputs) and the encoder outputs (encoder\_outputs) is computed using the Dot layer with axes=[2, 2]. This operation calculates the similarity between the decoder outputs and each encoder output. Next, an activation function (softmax) is applied to normalize the similarity scores across the encoder outputs. This step allows the model to assign higher weights to more relevant parts of the input sequence. The normalized attention weights are stored in the attention variable. The attention weights are then used to compute a weighted sum of the encoder outputs, giving more importance to the parts of the input sequence that the model pays more attention to. This is done using the Dot layer with axes=[2, 1] and stored in the context variable. Finally, the attention context vector and the decoder outputs are concatenated along the last axis using the Concatenate layer.\\
 \textbf{Output and Training:}\\ 
@@ -449,34 +452,34 @@ See Figure 11 for visualization of model architecture.
 \end{figure}
 \newpage 
 \subsubsection{Experiment 2:  Baseline Models: Traditional Statistical Techniques}
-In this section, we compare our proposed model to the  ARIMA and VAR models. Dondong (2010)~\cite{dongdong2010consumer} advocated for the use of ARIMA and VAR models as effective models for CPI forecasting.\\
+In this section, a comparison is drawn between the proposed model and the ARIMA and VAR models. Dondong (2010)~\cite{dongdong2010consumer} advocated for the use of ARIMA and VAR models as effective models for CPI forecasting.\\
 \textbf{Variational Autoencoder Model:}\\
-For the Variational Autoencoder baseline model, the dataset was divided into a training set (232 months) and a test set (12 months). The VAR model was trained on the training set using the VAR class, and the optimal lag order was determined using the  Akaike Information Criterion (AIC). Autocorrelation and partial autocorrelation plots were used to analyze residuals, and CPI was forecasted for the test set.\\
+For the Variational Autoencoder baseline model, the dataset was divided into a training set (238 months) and a test set (6 months). The VAR model was trained on the training set using the VAR class, and the optimal lag order was determined using the  Akaike Information Criterion (AIC). Autocorrelation and partial autocorrelation plots were used to analyze residuals, and CPI was forecasted for the test set.\\
 \textbf{ARIMA Model:}\\
-For the ARIMA model, the dataset was also divided into a training set (232 months) and a test set (12 months). After conducting parameter tuning, the ARIMA model was specified with an order of (1, 1, 1). Stationarity was checked using the ADF test, and ARIMA models with the specified order were fitted for each component of the CPI data. Autocorrelation and partial autocorrelation plots were generated to analyze residuals, and forecasting was performed on the test set.
+For the ARIMA model, the dataset was also divided into a training set (238 months) and a test set (6 months). For each CPI indicator the auto arima feature was implemented to find the appropriate selected order. Stationarity was checked using the ADF test, and ARIMA models with the specified order were fitted for each component of the CPI data. Autocorrelation and partial autocorrelation plots were generated to analyze residuals, and forecasting was performed on the test set.
 \vspace{1cm}
 \subsubsection{Experiment 3:  Baseline Models: Supervised Learning Techniques}
-In this section, we discuss the implementation of the Lasso regressor, Support Vector Regressor (SVR), and Random Forest Regressor models, which serve as benchmarks against our proposed architecture.\\
+In this section, the implementation of the Lasso regressor, Support Vector Regressor (SVR), and Random Forest Regressor models is discussed, serving as benchmarks against the proposed architecture.\\
 \textbf{Lasso Regressor:}\\
-In the Lasso regressor experiment, the dataset was split into a training set (220 months) and a test set (24 months). Sequential values were used for training, and a Lasso regressor model was created with an alpha value of 0.1. Multiple Lasso regressors were combined using stacking, which integrated their predictions for the final forecast. The stacking regressor was trained on the scaled training data and used to predict values on the scaled testing data.\\
+In the Lasso regressor experiment, the dataset was split into a training set (238 months) and a test set (6 months). Sequential values were used for training, and a Lasso regressor model was created with an alpha value of 0.1. Multiple Lasso regressors were combined using Multi Output Regressor, which integrated their predictions for the final forecast. The Multi Output Regressor was trained on the scaled training data and used to predict values on the scaled testing data.\\
 \textbf{Support Vector Regressor:}\\
-For the Support Vector Regressor experiment, the dataset was divided into a training set (220 months) and a test set (24 months). The Support Vector Regressor (SVR) method was applied separately to each CPI component. The training data, consisting of sequential values, was reshaped into a 2D array to fit the SVR model. Subsequently, predictions were generated for the test data using the trained SVR models. The forecasts from each SVR model were combined using averaging to create an ensemble forecast. Finally, the ensemble forecast was used to predict values for the test set.\\
+For the Support Vector Regressor experiment, the dataset was divided into a training set (238 months) and a test set (6 months). The Support Vector Regressor (SVR) method was applied separately to each CPI component. The training data, consisting of sequential values, was reshaped into a 2D array to fit the SVR model. Subsequently, predictions were generated for the test data using the trained SVR models. The forecasts from each SVR model were combined. Finally, the forecast was used to predict values for the test set.\\
 \textbf{Random Forest Regressor:}\\
-In the Random Forest Regressor experiment, the dataset was split into a training set and a test set. Each CPI component was trained individually using the first 220 months for training and the last 24 months for testing. Sequential integers were used to represent the training data. A Random Forest Regressor model was created and used to predict values on the test set. The model's residuals, representing the difference between actual and predicted values, were analyzed through autocorrelation and partial autocorrelation plots. 
+In the Random Forest Regressor experiment, the dataset was split into a training set and a test set.  Each CPI component was trained individually using the first 97\% of the data for training and the last 3\% of the data for testing. This was done to get a 238 training set and 6 month test set. Sequential integers were used to represent the training data. A Random Forest Regressor model was created and used to predict values on the test set. The model's residuals, representing the difference between actual and predicted values, were analyzed through autocorrelation and partial autocorrelation plots. 
 \vspace{1cm}
 \subsubsection{Experiment 4:  Baseline Models: Deep Learning Techniques}
-In this section, experiments are conducted using the Artificial Neural Network (ANN) and Convolutional LSTM models as baselines to compare to our proposed architecture.\\
+In this section, experiments are conducted using the Artificial Neural Network (ANN) and Convolutional LSTM models as baselines to compare to the proposed architecture.\\
 \textbf{Artificial Neural Network (ANN) Model:}\\
-In the implementation of the Artificial Neural Network (ANN) experiment, the dataset was divided into training and test sets. The training set contained 80\% of the CPI indices, while the remaining 20\% formed the test set. The ANN model was constructed using TensorFlow's Sequential API, consisting of three dense layers with 120 units each. All layers, including the output layer, utilized the ReLU activation function. The model was compiled with the Adam optimizer and the mean squared error (MSE) loss function. Training was performed for 500 epochs with a batch size of 8. Subsequently, the trained model was used to make predictions on the test set.\\
+In the implementation of the Artificial Neural Network (ANN) experiment, the dataset was divided into training and test sets. The training set contained 97\% of the CPI indices, while the remaining 3\% formed the test set. The ANN model was constructed using TensorFlow's Sequential API, consisting of three dense layers with 180 units each. All layers, including the output layer, utilized the ReLU activation function. The model was compiled with the Adam optimizer and the mean squared error (MSE) loss function. Training was performed for 500 epochs with a batch size of 2. Subsequently, the trained model was used to make predictions on the test set.\\
 \textbf{Convolutional LSTM Model:}\\
-For this implementation, the data was split into training and testing sets. The ConvLSTM model was constructed using TensorFlow's Sequential API. It consisted of a ConvLSTM2D layer with 120 units, followed by a Flatten layer, a fully connected Dense layer with 120 units, and a final Dense layer with a number of units equal to the target columns. The model was compiled with the Adam optimizer and mean squared error loss. Training was conducted using the fit function for 300 epochs with a batch size of 2. After training, the model was evaluated on the test data to compute the loss value, and predictions were made on the test data using the trained model.
+For this implementation, the data was split into training and testing sets. The ConvLSTM model was constructed using TensorFlow's Sequential API. It consisted of a ConvLSTM2D layer with 120 units, followed by a Flatten layer, a fully connected Dense layer with 120 units, and a final Dense layer with a number of units equal to the target columns. The model was compiled with the Adam optimizer and mean squared error loss. Training was conducted using the fit function for 500 epochs with a batch size of 2. After training, the model was evaluated on the test data to compute the loss value, and predictions were made on the test data using the trained model.
 
 \newpage 
 \begin{center}
 \section{Results}
 \end{center}
 \subsection{Model Evaluation}
-The results of our proposed and baseline models were evaluated using the Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), SMAPE (Symmetric Mean Absolute Percentage Error) and R-squared (R2).\\
+The results of the proposed and baseline models were evaluated using the Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), SMAPE (Symmetric Mean Absolute Percentage Error) and R-squared (R2).\\
 \textbf{Root Mean Squared Error (RMSE):}\\
 The RMSE mathematically formulated as 
 \begin{align*}
@@ -504,35 +507,37 @@ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y_i})^2}{\sum_{i=1}^{n} (y_i - \bar{y
  measures the proportion of the variance in the dependent variable (in our case CPI indices) that is predictable from the independent variables (CPI predictions). It is a preferred metric due to its goodness of fit nature as well as interpretability. It provides a measure of how well the model fits the data. A higher R2 value indicates that a larger proportion of the variance in the data is accounted for by the model. Again, R2 has a straightforward interpretation. A value of 1 indicates that the model perfectly fits the data, while a value of 0 means that the model provides no  improvement \vspace{1cm} over a simple mean-based prediction.\\ 
 \noindent
 \subsection{Model Results}
-In \textbf{Table 2} we see the overall results/performance on each  experimental model.
+\textbf{Table 2} provides an overview of the overall results/performance on each  experimental model.
 \begin{table}[htbp]
   \centering
   \renewcommand{\arraystretch}{1.5} % Set row spacing to 1.5
   % Use tabularx to adjust the table width
-  \begin{tabularx}{0.9\textwidth}{l *{4}{S[table-format=3.2]}}
+  \begin{tabularx}{0.9\textwidth}{l *{4}{S[table-format=2.4]}}
     \toprule
     Model & {RMSE} & {MAE} & {SMAPE} & {R2} \\
     \midrule
-    \textbf{RNN Attention Encoder Decoder Model} & \textbf{0.15} & \textbf{0.09} & \textbf{0.07} & \textbf{0.99} \\
-    VAR & 20.88 & 16.72 & 0.08 & 0.29 \\
-    ARIMA & 9.13 & 5.56 & 3.12 & -4.19 \\
-    Lasso Regressor (LR) & 18.82 & 11.37 & 0.81 & -2.03 \\
-    Random Forest Regressor (RFR) & 15.37 & 14.49 & 23.85 & -8.16 \\
-    Support Vector Regressor (SVR) & 19.18 & 12.08 & 7.21 & -2.71 \\
-    ANN & 17.47 & 9.67 & 6.07 & 0.37 \\
-    Conv-LSTM & 127.22 & 126.14 & 198.5 & -129.85 \\
+    \textbf{RNN Attention Encoder Decoder Model} & \textbf{0.1585} & \textbf{0.0968} & \textbf{0.0762} & \textbf{0.9997} \\
+    VAR & 6.4255 & 5.3876 & 0.0309 & 0.9107 \\
+    ARIMA & 10.4289 & 4.8552 & 2.4175 & -2.3527 \\
+    Lasso Regressor & 0.4049 & 0.2853 & 0.1654 & 0.9315 \\
+    Support Vector Regressor & 0.2923 & 0.2063 & 0.1353 & 0.9954 \\
+    Random Forest Regressor & 1.5490 & 0.7897 & 0.1140 & 0.9953 \\
+    Artificial Neural Network & 7.4081 & 2.1677 & 0.6317 & 0.9631 \\
+    Convolutional LSTM & 13.9133 & 8.8546 & 3.3672 & 0.3688 \\
     \bottomrule
   \end{tabularx}
   \caption{Performance Comparison Between Proposed vs Baseline Methods}
   \label{tab:evaluation}
 \end{table}
+
+
 \newpage
 \noindent
-From \textbf{Table 2} we can see that RNN Attention Encoder Decoder Model significantly outperforms the other forecasting models for CPI (Consumer Price Index) predictions. It achieved the lowest RMSE, MAE, and SMAPE values, indicating smaller prediction errors and more balanced performance. Additionally, the R2 score of 0.99 demonstrates a high level of goodness of fit, indicating that around 99\% of the variance in the CPI data can be accurately explained by the model's predictions. In contrast, the other models showed higher errors and lower R2 scores, indicating weaker  predictive \vspace{1cm} capabilities. \\
+From \textbf{Table 2}, we observe that the  RNN Attention Encoder Decoder Model achieved the lowest RMSE, MAE, and SMAPE values, indicating smaller prediction errors and more balanced performance. Additionally, the R2 score of 0.99 demonstrates a high level of goodness of fit, indicating that around 99\% of the variance in the CPI data can be accurately explained by the model's predictions. In contrast, the other models showed higher errors and lower R2 scores, indicating weaker  predictive \vspace{1cm} capabilities. \\
 \noindent
-We also analyzed prediction performance of the proposed RNN Attention Encoder Decoder Model compared to the baseline model at a  6-time step interval using graphical display.
+Below the performance of the proposed RNN Attention Encoder Decoder Model is compared to the baseline models at a  6-time step interval using graphical display.
 In Figure 8, the RNN Attention Encoder Decoder Model consistently predicts more accurately and closer to the actual values compared to other baseline models.
-The deviation between the predicted value and the ground-truth value for the proposed model is not too large, while more obvious deviations are observed in the VAR, Lasso Regressor, RFR, SVR, and Convolutional LSTM Models. For instance, when examining the predictions for April 2023, the actual CPI value is 156. The proposed model predicts a CPI value of 155, whereas the baseline models predict 163 using VAR, 153 with ARIMA, 144 with Lasso Regressor, 153 with Random Forest Regressor, 138 with Support Vector Regressor, 154 with the ANN model, and 133 with the Convolutional LSTM model. This exemplifies that the proposed model predicts much closer to the actual values.
+The deviation between the predicted value and the ground-truth value for the proposed model is not too large, while more obvious deviations are observed in the VAR, Lasso Regressor, RFR, SVR, and Convolutional LSTM Models. For instance, when examining the predictions for April 2023, the actual CPI value is 156.4. The proposed model predicts a CPI value of 156.5, whereas the baseline models predict 159.2 using VAR, 156.8 with ARIMA, 155 with Lasso Regressor, 155.5 with Random Forest Regressor, 158.3 with Support Vector Regressor, 156.3 with the ANN model, and 157.2 with the Convolutional LSTM model. This exemplifies that the proposed model predicts much closer to the actual values.
 
 \begin{figure}[htbp]
   \centering
@@ -638,7 +643,7 @@ In  \textbf{Table 3} we see performance for RNN Attention Encoder Decoder Moder 
 From the above, the model exhibits exceptional performance across various CPI indicators.  Food, Shelter, Household operations, and Transportation, predictions demonstrated remarkable accuracy, with R2 scores close to 1. The model's impressive performance extends to various other CPI components, including Health and personal care, Recreation \& education, and Alcohol, tobacco \& cannabis. In each case, the model achieved low prediction errors and high R2 scores, indicating its reliable forecasting capabilities across diverse sectors of the economy. The RNN Attention Encoder Decoder Model also proved valuable for forecasting overall inflation trends. When considering All-items, All-items excluding food and energy, and All-items excluding energy, the model produced precise predictions, as reflected by their R2 scores approaching 1. Although the Gasoline CPI category exhibited slightly higher errors in the RMSE, the model's R2 score of 0.999 still suggests that it captures a substantial proportion of the variance in this indicator. Overall, the predictions on the various indicators were good.
 
 \subsection{Model Forecast}
-In Table 4 we have our 6 month forecast from our proposed model for the  various CPI indicators. 
+Table 4 presents the 6-month forecast derived from the proposed model for the different CPI indicators.
 \begin{table}[htbp]
   \centering
   \renewcommand{\arraystretch}{1.5} % Set row spacing to 1.5
@@ -668,7 +673,7 @@ In Table 4 we have our 6 month forecast from our proposed model for the  various
   \label{tab:cpi_data}
 \end{table}
 
-Our predictions suggest that CPI values for all indices, except for Clothing and Footwear, are expected to increase over the next two quarters, indicating the likelihood of inflationary pressures. In response, monetary authorities, such as the Bank of Canada, may consider implementing a tighter monetary policy by raising interest rates. This measure can help curb inflation by reducing borrowing and spending, potentially stabilizing prices. Additionally, sectors like Gasoline and Energy are projected to experience significant price increases, warranting targeted policies to address sector-specific inflationary pressures, such as promoting energy efficiency or providing subsidies to mitigate consumer impact.\\
+The predictions indicate that CPI values for all indices, except Clothing and Footwear, are anticipated to rise in the upcoming two quarters, signaling the potential presence of inflationary pressures. In response, monetary authorities, such as the Bank of Canada, may consider implementing a tighter monetary policy by raising interest rates. This measure can help curb inflation by reducing borrowing and spending, potentially stabilizing prices. Additionally, sectors like Gasoline and Energy are projected to experience significant price increases, warranting targeted policies to address sector-specific inflationary pressures, such as promoting energy efficiency or providing subsidies to mitigate consumer impact.\\
 \noindent
 The forecasted rise in CPI for Food and other essential items may lead to increased living costs for households. Fiscal authorities can consider implementing measures to support vulnerable populations, such as food assistance programs, or direct cash transfers.\\
 \noindent
@@ -682,15 +687,14 @@ While the forecasted trends provide valuable directional cues for policy decisio
 In this paper, an Attention-based RNN Encoder-Decoder architecture with the Teacher Forcing technique was leveraged to provide a more accurate forecast for inflation indicators such as CPI.
 The model was designed to bridge the gap between capturing long-term dependencies in CPI data and effectively handle the non-linearity commonly present in such datasets. 
 Additionally, the application of the Teacher Forcing technique served to stabilize and accelerate the model training process while mitigating issues related to error propagation.\\
-\indent The results of the research demonstrated the outstanding performance of the RNN Attention Encoder-Decoder Model, surpassing both traditional approaches and various supervised and deep learning techniques. 
+\indent The results of the research demonstrated the outstanding performance of the RNN Encoder-Decoder Attention Model, surpassing both traditional approaches and various supervised and deep learning techniques. 
 The model achieved an impressively low RMSE of 0.15, indicating its ability to generate predictions close to the actual CPI values. 
 Furthermore, the high R2 value of 0.99 illustrated the model's superior predictive power, explaining almost all of the variance in the CPI data.\\
-While this research has achieved promising results, it is essential to acknowledge its limitations. For example interpertability with attention based decoder encoder mechanisms can be challenging that is understanding exactly how the model makes its decisions and which input elements are most influential in the predictions might not be straightforward. Hence it is very difficult to do any kind of backward engineering.
-Furthermore, while the model performs well with local or regional data, it may face challenges in capturing context or dependencies between distant elements in a global dataset.\\
+From a policy perspective, the model's outcomes signal an anticipated growth in the Consumer Price Index (CPI), with potential repercussions on inflation rates across Canada. Hence, emphasizing the need for suitable macroeconomic policies. \\
+While this research has achieved promising results, it is essential to acknowledge its limitations. For example interpertability with attention based decoder encoder mechanisms can be challenging that is understanding exactly how the model makes its decisions and which input elements are most influential in the predictions might not be straightforward. Hence it is very difficult to do any kind of backward engineering.\\
 \indent Regardless of its limitations the findings of this research make a significant contribution to the field of economic forecasting and underscore the potential of employing advanced deep learning techniques for CPI prediction.
 Moreover, this study opens avenues for future research on economic forecasting, including exploring other transformer methods, attention mechanisms, and hyperparameter tuning techniques such as Scheduled Sampling, which shares similarities with Teacher Forcing.
 As the world continues to address the current inflation crises, the knowledge gained from this study can contribute to making informed decisions and developing effective policies to ensure economic stability and growth.
-
 \newpage
 \appendix
 \section*{Appendix A}
@@ -816,4 +820,3 @@ Deng, L., \& Pan, Y. (2021). Data-driven proxy model for waterflood performance 
 Lungu, C. (2020). Machine Learning Blog: Training an RNN with teacher forcing. Retrieved from \url{http://www.clungu.com/Teacher-Forcing/}
 \end{thebibliography}
 \end{document}
-
